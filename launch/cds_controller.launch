@@ -1,0 +1,42 @@
+<launch>
+
+  <!-- LIGHTWEIGHT CARTESIAN CDS SIMULATOR -->
+  <node pkg="pr2_example" type="cds_controller_pr2" name="cds_controller_pr2" output="screen">
+    <!-- <param name="dt" value="0.001"/> -->
+    <param name="dt" value="0.001"/>
+    <param name="reaching_threshold" value="0.002"/>
+
+    <param name="master_gmm_file" value="$(find pr2_example)/data/reaching/masterDyn.gmm"/>
+    <param name="slave_gmm_file" value="$(find pr2_example)/data/reaching/slaveDyn.gmm"/>
+    <param name="coupling_gmm_file" value="$(find pr2_example)/data/reaching/couplingDyn.gmm"/>
+    <param name="alpha" value="1"/>
+    <param name="beta" value="1"/>
+    <param name="lambda" value="1"/>
+
+    <!-- object and attractor frame setup -->
+    <param name="object_frame/origin/x" value="1.0250"/>
+    <param name="object_frame/origin/y" value="-0.6550"/>
+    <param name="object_frame/origin/z" value="0.6420"/> 
+    <param name="object_frame/orientation/x" value="0.0"/>
+    <param name="object_frame/orientation/y" value="0.0"/>
+    <param name="object_frame/orientation/z" value="0.0"/>
+    <param name="object_frame/orientation/w" value="1.0"/>
+
+    <param name="attractor_frame/origin/x" value="-0.3995"/>
+    <param name="attractor_frame/origin/y" value="-0.2047"/>
+    <param name="attractor_frame/origin/z" value="0.3195"/>
+    <param name="attractor_frame/orientation/x" value="-0.22154"/>
+    <param name="attractor_frame/orientation/y" value="0.91587"/>
+    <param name="attractor_frame/orientation/z" value="0.062721"/>
+    <param name="attractor_frame/orientation/w" value="0.3289"/>
+
+    <param name="update_params" value="0.0"/>
+    <param name="run_controller" value="0.0"/>
+
+    <!-- TF FRAME SEMANTICS -->
+    <param name="parent_frame" value="map"/>
+    <param name="child_frame" value="des_EEframe"/>
+
+  </node>
+
+</launch>

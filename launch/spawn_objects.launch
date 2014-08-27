@@ -1,0 +1,14 @@
+<launch>
+  <!-- OVEN-->
+  <param name="oven_description" textfile="$(find pr2_example)/models/oven/oven.urdf" />
+  <node name="spawn_oven_1" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -param oven_description -x 1.0 -y -0.6 -z 1.0 -model oven_1" />
+  <node pkg="tf" type="static_transform_publisher" name="rviz_oven_frame" args=" 0 0 -0.05 0.0 0.0 0.0 1.0 /oven /my_oven 10" />
+
+  <!-- PANCAKE -->
+  <param name="pancake_description" textfile="$(find pr2_example)/models/pancake/pancake.urdf" />
+  <node name="spawn_pancake_1" pkg="gazebo_ros" type="spawn_model" 
+        args="-urdf -param pancake_description -x 1.0 -y -0.6 -z 1.2 -model pancake_1" />
+  <node pkg="tf" type="static_transform_publisher" name="rviz_pancake_frame" args=" 0 0 -0.05 0.0 0.0 0.0 1.0 /pancake /my_pancake 10" />
+
+</launch>

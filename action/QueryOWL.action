@@ -1,0 +1,8 @@
+#goal definition
+string desired_motion_phase
+---
+#result definition
+robohow_common_msgs/MotionPhase desired_motion_phase_model
+---
+#feedback
+int32 found

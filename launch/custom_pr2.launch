@@ -1,0 +1,27 @@
+<launch>
+  <!-- ROBOT POSE -->
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0"/>
+  <arg name="roll" default="0"/>
+  <arg name="pitch" default="0"/>
+  <arg name="yaw" default="0"/>
+
+  <!-- EMPTY WORLD -->
+  <arg name="gui" default="true"/>
+  <arg name="paused" default="true"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)" />
+  </include>
+
+  <!-- PR2 ROBOT -->
+  <include file="$(find pr2_description)/robots/upload_pr2.launch" />
+  <node name="spawn_pr2_model" pkg="gazebo_ros" type="spawn_model"  respawn="false" output="screen"
+        args="-unpause -urdf -param robot_description -model pr2 -ros_namespace /gazebo
+              -x $(arg x) -y $(arg y) -z $(arg z)
+              -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
+  <include file="$(find pr2_gazebo)/launch/pr2_bringup.launch" />
+  <include file="$(find pr2_controller_configuration_gazebo)/launch/pr2_default_controllers.launch" />
+
+</launch>

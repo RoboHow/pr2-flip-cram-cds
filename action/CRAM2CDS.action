@@ -1,0 +1,8 @@
+#goal definition
+robohow_common_msgs/MotionPhase desired_motion_phase_model
+---
+#result definition
+int32 success
+---
+#feedback
+float64 progress

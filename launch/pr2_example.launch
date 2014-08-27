@@ -1,0 +1,63 @@
+<launch>
+
+  <!-- PR2 IN GAZEBO -->
+  <include file="$(find pr2_example)/launch/custom_pr2.launch">
+    <!-- <arg name="x" value="0.0"/> -->
+    <arg name="x" value="-0.5"/>
+    <arg name="y" value="-0.5"/>
+    <arg name="yaw" value="-0.15"/>
+  </include>
+  
+  <!-- TABLE -->
+  <include file="$(find pr2_example)/launch/table.launch" />
+
+  <!-- OBJECTS -->
+  <include file="$(find pr2_example)/launch/spawn_objects.launch" />
+
+  <!-- OVEN -->
+  <node pkg="tf" type="static_transform_publisher" name="oven_frame" args=" 1.0250 -0.6550 0.6420 0.0 0.0 0.0 1.0 /map /oven 10" />
+
+  <!-- PANCAKE -->
+  <node pkg="tf" type="static_transform_publisher" name="pancake_frame" args=" 0 0 0.05 0.0 0.0 0.0 1.0 /oven /pancake 10" />
+
+  <!-- SPATULA -->
+  <node pkg="tf" type="static_transform_publisher" name="spatula_frame" args=" 0 0 -0.05 0.0 0.0 0.0 1.0 /r_gripper_tool_frame2 /spatula 10" />
+
+  <!-- ATTRACTORS -->
+  <node pkg="tf" type="static_transform_publisher" name="att1_frame" args=" 0.6255 -0.8597 0.9515 -0.22154  0.91587   0.062721  0.3289  /map /att1 10" />
+  <node pkg="tf" type="static_transform_publisher" name="att2_frame" args=" 0.7905 -0.6277 0.8415 -0.2223   0.84053   0.079033  0.4877  /map /att2 10" />
+  <node pkg="tf" type="static_transform_publisher" name="att3_frame" args=" 0.6776 -0.8673 1.1685 -0.603    0.258    -0.396     0.643 /map /att3 10" />
+  <node pkg="tf" type="static_transform_publisher" name="att4_frame" args=" 0.3764 -1.0815 1.2133  0.05294  0.77767  -0.23565   0.58043 /map /att4 10" />
+
+  <!-- END-EFFECTOR -->
+  <node pkg="pr2_example" type="eeframe_tf_broadcaster" name="broadcaster_frame" />
+
+  <!-- AUXILIAR FRAME FOR LEFT ARM -->
+  <node pkg="tf" type="static_transform_publisher" name="att5_frame" args=" 0.06 0.12 0.01 -1.57 3.14 0.5  /oven /auxF 10" />
+  <node pkg="tf" type="static_transform_publisher" name="att6_frame" args=" -0.05 -0.05 -0.05 0 0 0  /auxF /auxF1 10" />
+
+  <!-- END-EFFECTOR INITIAL POSITION -->
+  <node pkg="tf" type="static_transform_publisher" name="EEini" args=" 0.4832  -1.0673  1.1065  -0.34494  0.83801  -0.0049175  0.42276 /map /EEini 10" />
+
+  <!-- RVIZ -->
+  <!-- <node pkg="rviz" type="rviz" name="rviz"/> -->
+
+  <!-- LOZALIZATION -->
+  <include file="$(find pr2_example)/launch/localization.launch" />
+
+  <!-- CDS CONTROLLER -->
+  <include file="$(find pr2_example)/launch/cds_controller.launch" />
+
+  <!-- JSON-PROLOG from KNOWROB-SEDS -->
+  <include file="$(find knowrob_seds)/launch/knowrob_seds.launch" />
+
+  <!-- SERVER FOR OWL QUERIES -->
+  <node name="queryOWL" pkg="pr2_example" type="query_knowrob_server.py" />
+
+  <!-- SERVER FOR CRAM2CDS SERVICES -->
+  <node name="cram2cds" pkg="pr2_example" type="cram2cds_server.py" />
+
+  <!-- NAVIGATION CONTROLLER -->
+  <include file="$(find pr2_nav_pcontroller)/nav_pcontroller.launch" />
+
+</launch>

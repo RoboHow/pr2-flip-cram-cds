@@ -1,0 +1,77 @@
+<package>
+  <description brief="pr2_example">
+     pr2_example
+  </description>
+  <author>Brahayam</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/pr2_example</url>
+
+  <!-- Basic Lisp dependencies -->
+  <depend package="rosprolog"/>
+  <depend package="roslisp"/>
+  <depend package="alexandria"/>
+  
+  <!-- Basic CRAM and ROS dependencies -->
+  <depend package="cram_language"/>
+  <depend package="cram_roslisp_common"/>
+  <depend package="cram_reasoning" />
+  <depend package="cram_plan_library" />
+  <depend package="cram_plan_knowledge" />
+  <depend package="cram_environment_representation" />
+  <depend package="cram_physics_utils" />
+  <depend package="designators_ros"/>
+  <depend package="object_location_designators" />
+  <depend package="bullet_reasoning" />
+
+  <!-- Costmap generation packages -->
+  <depend package="semantic_map_costmap" />
+  <!-- <depend package="pr2_reachability_costmap" /> -->
+  <depend package="location_costmap" />
+  <depend package="occupancy_grid_costmap" />
+
+  <!-- Process module related dependencies -->
+  <depend package="pr2_manipulation_process_module"/>
+  <depend package="pr2_navigation_process_module" />
+  <depend package="gazebo_perception_process_module"/>
+  <depend package="point_head_process_module" />
+
+  <!-- PR2 related dependencies -->
+  <depend package="cram_pr2_knowledge" />
+  <depend package="pr2_manipulation_knowledge" />
+  <depend package="pr2_description_lowres" />
+  <depend package="pr2_arm_kinematics" />
+  <depend package="nav_pcontroller" />
+
+  <!-- CATKIN dependencies -->
+  <!-- <depend package="gazebo_msgs" /> -->
+  <depend package="gazebo_ros"/>
+
+  <!-- OTHER PACKAGE dependencies-->
+  <depend package="cl_tf"/>
+  <!-- <depend package="cl_transforms"/> -->
+  <depend package="cl_robot_models"/>
+  <depend package="cram_pr2_controllers"/>
+  <depend package="pr2_controllers_msgs"/>
+  <depend package="kinematics_msgs"/>
+  <depend package="trajectory_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="robohow_common_msgs"/>
+  <depend package="actionlib_msgs"/>
+  <depend package="actionlib_lisp"/>
+  <depend package="json_prolog"/>
+  <depend package="cram_plan_library"/>
+  <depend package="actionlib"/>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="tf"/>
+  <depend package="roslib"/>
+  <depend package="std_msgs"/>
+  <depend package="cds_control_nodes"/>
+  <depend package="knowrob_seds"/>
+
+  <export>
+    <gazebo plugin_path="${prefix}/gazebo/lib/" />
+  </export>
+
+</package>

@@ -1,0 +1,13 @@
+<launch>
+  <!-- TABLE -->
+  <param name="table_description" command="$(find xacro)/xacro.py $(find pr2_example)/models/table/table.urdf.xacro" />
+  <node name="spawn_table" pkg="gazebo_ros" type="spawn_model" args="-urdf -param table_description -x 1.0 -y -0.6 -model table_model" respawn="false" output="screen" />
+  <node pkg="tf" type="static_transform_publisher" name="table1_publisher" args=" 1.0 -0.6 -0.05  0 0 0 1  /map /table_top_link 10" />
+
+  <node pkg="tf" type="static_transform_publisher" name="table2_publisher" args=" 0.3  0.6  0.6  0 0 0 1  /table_top_link  /leg1_link  10" />
+  <node pkg="tf" type="static_transform_publisher" name="table3_publisher" args=" 0.3 -0.6  0.6  0 0 0 1  /table_top_link  /leg2_link  10" />
+  <node pkg="tf" type="static_transform_publisher" name="table4_publisher" args="-0.3  0.6  0.6  0 0 0 1  /table_top_link  /leg3_link  10" />
+  <node pkg="tf" type="static_transform_publisher" name="table5_publisher" args="-0.3 -0.6  0.6  0 0 0 1  /table_top_link  /leg4_link  10" />
+
+
+</launch>
